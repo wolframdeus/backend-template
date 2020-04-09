@@ -3,8 +3,5 @@
  */
 export enum ApolloError {
   Authorization = 'AuthorizationError',
-  AdminRightsRequired = 'AdminRightsRequiredError',
-  FindUsersLimit = 'FindUsersLimitError',
   Unknown = 'UnknownError',
-  UserNotFound = 'UserNotFoundError',
 }
