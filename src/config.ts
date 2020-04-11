@@ -8,20 +8,20 @@ const dbPort = Number(process.env.DB_PORT);
 const dbName = process.env.DB_NAME;
 const vkAppSecretKey = process.env.VK_APP_SECRET_KEY;
 const staticBaseUrl = process.env.STATIC_BASE_URL;
+const cdnBaseUrl = process.env.CDN_BASE_URL;
 
 /**
- * Проверяет, является ли значение типом EnvironmentType 
+ * Checks if value is EnvironmentType
  * @param value
  * @returns {value is EnvironmentType}
  */
 function isEnvironmentType(value: any): value is EnvironmentType {
   const envs: EnvironmentType[] = ['production', 'development'];
-  
   return envs.includes(value);
 }
 
 /**
- * Создает текст ошибки для некорректной переменной среды
+ * Creates error text about incorrect environment variable
  * @param {string} envName
  * @returns {string}
  */
@@ -31,6 +31,9 @@ function getErrorText(envName: string) {
 
 if (!isEnvironmentType(env)) {
   throw new Error(getErrorText('ENVIRONMENT'));
+}
+if (!cdnBaseUrl) {
+  throw new Error(getErrorText('CDN_BASE_URL'));
 }
 if (!staticBaseUrl) {
   throw new Error(getErrorText('STATIC_BASE_URL'));

@@ -5,10 +5,10 @@ import {withErrorCatch} from './withErrorCatch';
 import config from '../../config';
 
 /**
- * Миддлвара которая добавляет в контекст id пользователя из запроса
+ * Middleware which adds user id in context from request
  * @type {Resolver<unknown>}
  */
-const withAuth = withErrorCatch.createResolver(
+export const withAuth = withErrorCatch.createResolver(
   (root, _, context: Context) => {
     const {req} = context;
     const params = req.header('x-launch-params');
@@ -24,5 +24,3 @@ const withAuth = withErrorCatch.createResolver(
     throw new AuthorizationError();
   },
 );
-
-export default withAuth;

@@ -1,1 +1,3 @@
-// Здесь находится описание всех возможных сущностей в проекте
+/**
+ * Here must be description of all entities in project
+ */

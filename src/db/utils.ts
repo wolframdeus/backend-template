@@ -1,14 +1,13 @@
 import config from '../config';
 import {MongoClient} from 'mongodb';
 import {Database} from './Database';
-import {Collection} from './types';
 
 /**
- * Создает клиент mongo
+ * Creates mongo client
  * @returns {MongoClient}
  */
 export function createMongoClient(): MongoClient {
-  const {dbPort, dbHost} = config;
+  const {dbHost, dbPort} = config;
   const connectionString = `mongodb://${dbHost}:${dbPort}`;
   return new MongoClient(connectionString, {
     useNewUrlParser: true,
@@ -17,7 +16,7 @@ export function createMongoClient(): MongoClient {
 }
 
 /**
- * Создаем обертку для работы с БД относительно клиента.
+ * Creates wrapper to work with database
  * @param client
  */
 export function createDb(client: MongoClient): Database {
@@ -25,7 +24,7 @@ export function createDb(client: MongoClient): Database {
 }
 
 /**
- * Создает ноебходимые индексы в БД
+ * Creates required structure for database
  * @param {Database} db
  * @returns {Promise<void>}
  */

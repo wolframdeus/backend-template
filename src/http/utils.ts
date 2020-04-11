@@ -1,9 +1,15 @@
 import * as qs from 'querystring';
 import * as crypto from 'crypto';
-import {SignValidationResult} from './types';
 
 /**
- * Проверяет валидность подписи пользователя.
+ * Result of sign validation
+ */
+export type SignValidationResult =
+  { valid: false }
+  | { valid: true; userId: number };
+
+/**
+ * Checks if sign sent along with VK Mini Apps parameters is valid
  * @param queryString
  * @param encryptKey
  */

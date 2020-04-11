@@ -1,10 +1,13 @@
 import {ApolloServer} from 'apollo-server-express';
 import {Context, RootTypeResolvers, SubscriptionTypeResolvers} from './types';
 import {Database} from '../db/Database';
+import config from '../config';
 
-// Здесь необходимо импортировать типы Query, Mutation и Subscription из
-// bridge и заменить ниже объявленные. Также, необходимо импортировать
-// текстовое представление схемы и использовать в typeDefs
+/**
+ * Here we should import types Query, Mutation and Subscription from bridge
+ * and replace these below. Moreover, it is needed to import text
+ * representation of schema and use it in typeDefs.
+ */
 type Query = {};
 type Mutation = {};
 type Subscription = {};
@@ -21,7 +24,7 @@ type Subscription {
 `;
 
 /**
- * Создает ApolloServer
+ * Creates ApolloServer
  * @param {Database} db
  * @returns {ApolloServer}
  */
@@ -33,6 +36,7 @@ export function createApolloServer(db: Database) {
   return new ApolloServer({
     typeDefs: schema,
     context: (ctx): Context => ({...ctx, db}),
+    introspection: config.env === 'development',
     resolvers: {
       Query,
       Mutation,

@@ -2,7 +2,7 @@ import {Router} from 'express';
 import {ApolloServer} from 'apollo-server-express';
 
 /**
- * Возвращает корневой роутер
+ * Returns root router
  * @param {ApolloServer} apolloServer
  * @returns {Router}
  */

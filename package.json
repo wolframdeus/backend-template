@@ -1,5 +1,5 @@
 {
-  "name": "quarantino-backend",
+  "name": "backend-template",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:bluesweater-studio/quarantino-backend.git",
@@ -8,8 +8,9 @@
   "scripts": {
     "dev": "dotenv -e .env -- ts-node-dev --transpileOnly --clear -- src/index.ts",
     "build": "rimraf dist && tsc",
-    "start": "dotenv -e .env node dist/index.js",
-    "tunnel": "ngrok http --region eu 9000"
+    "test": "tsc --noEmit",
+    "start": "dotenv -e .env -- node dist/index.js",
+    "tunnel": "ngrok http --region eu "
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.44"

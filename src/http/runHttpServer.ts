@@ -9,28 +9,30 @@ import {createDb, createMongoClient} from '../db';
 import {getRootRouter} from './routes/getRootRouter';
 
 /**
- * Запускает HTTP-сервер
+ * Starts HTTP-server
  * @returns {Promise<void>}
  */
 export async function runHttpServer() {
   const {port, root, env} = config;
 
-  // Подключаем mongo
+  // Connect mongo client
   const client = createMongoClient();
   await client.connect();
 
-  // Создаем БД
+  // Create database
   const db = createDb(client);
 
-  // Создаем Express-сервер
+  // Create Express-server
   const app = express();
   const server = createServer(app);
+
+  // Create Apollo server
   const apolloServer = createApolloServer(db);
 
   app.use(cors());
 
-  // В дев среде отдаем статику
-  if (env !== 'production') {
+  // Send static in dev mode
+  if (env === 'development') {
     app.use(
       config.staticBaseUrl,
       express.static(path.resolve(__dirname, '../../static')),
@@ -43,7 +45,7 @@ export async function runHttpServer() {
 
   server.listen(port, () => {
     console.log(
-      'Started listening on ' + chalk.yellow('http://localhost:' + port + root),
+      'Server started on ' + chalk.yellow('http://localhost:' + port + root),
     );
   });
 }

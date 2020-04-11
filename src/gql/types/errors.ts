@@ -1,5 +1,5 @@
 /**
- * Список ошибок которые может возвращать сервер
+ * List of errors which server can return
  */
 export enum ApolloError {
   Authorization = 'AuthorizationError',

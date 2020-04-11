@@ -1,10 +1,10 @@
 /**
- * Тип среды запуска
+ * Deploy environment type
  */
 export type EnvironmentType = 'production' | 'development';
 
 /**
- * Серверный конфиг
+ * Server config
  */
 export interface Config {
   env: EnvironmentType;
@@ -17,9 +17,3 @@ export interface Config {
   staticBaseUrl: string;
 }
 
-/**
- * Результат проверки подписи
- */
-export type SignValidationResult =
-  { valid: false }
-  | ({ valid: true; userId: number });

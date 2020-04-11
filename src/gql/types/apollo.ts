@@ -3,7 +3,7 @@ import {Database} from '../../db/Database';
 import {Resolver} from 'apollo-resolvers';
 
 /**
- * Общие свойства контекста
+ * COntext base
  */
 export interface Context {
   db: Database;
@@ -11,21 +11,19 @@ export interface Context {
 }
 
 /**
- * Контекст в котором пользователь верифицирован
+ * Context where user is verified
  */
-export type AuthenticatedContext = Context & {
-  userId: number;
-}
+export type AuthenticatedContext = Context & { userId: number };
 
 /**
- * Описание резолверов типа
+ * Resolvers description of type
  */
 export type RootTypeResolvers<Type extends {}> = {
   [K in keyof Type]: Resolver<Type[K]>;
 }
 
 /**
- * Описание резолверов для типа Subscription
+ * Resolvers description of Subscription type
  */
 export type SubscriptionTypeResolvers<Type extends {}> = {
   [K in keyof Type]: {

@@ -4,7 +4,7 @@ import config from '../../config';
 const isDev = config.env !== 'production';
 
 /**
- * Создает ошибку GraphQL.
+ * Creates GraphQL error
  * @param {string} name
  * @param {ErrorConfig} config
  * @returns {ApolloError}

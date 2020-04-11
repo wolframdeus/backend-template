@@ -3,8 +3,7 @@ import {isInstance} from 'apollo-errors';
 import {UnknownError} from '../errors';
 
 /**
- * Аварийный распознаватель. Форматирует ошибку в случае если она не была
- * отловлена
+ * Emergency resolver. Catches error if it was not catched before
  * @type {Resolver<unknown>}
  */
 export const withErrorCatch = createResolver(

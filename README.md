@@ -1,39 +1,42 @@
 # backend-template
 
-Шаблон для написания backend-а на технологиях:
+Template to create a new backend service.
 
+## Technologies
 - Node JS
 - TypeScript
 - MongoDB
 - Apollo
 
-## Переменные среды
-Для запуска проекта необходимо создать файл `.env` и поместить в него следующие
-переменные:
+## Environment variables
 
-| Наименование | Описание |
+To deploy project it is required to create file `.env` and place these variables
+into this file:
+
+| Name | Description  |
 |---|---|
-| `PORT` | Номер порта для запуска|
-| `ROOT` | Корневой URL для доступа к серверу. Например - `/api`. Тогда можно получить доступ по адресу `http://domain.com/api` |
-| `DB_HOST` | Хост сервера на котором расположена база данных |
-| `DB_PORT` | Порт сервера на котором расположена база данных | 
-| `DB_NAME` | Наименование БД |
-| `ENVIRONMENT` | Среда запуска сервера (`development` или `production`) |
-| `VK_APP_SECRET_KEY` | Секретный ключ приложения ВКонтакте. Нужен для авторизации запросов пользователей |
-| `STATIC_BASE_URL` | Базовый URL для обслуживания статики |
+| `PORT` | Port number to launch |
+| `ROOT` | Root URL to get access to server. For example - `/api`. So then you can get access by path `http://domain.com/api` |
+| `DB_HOST` | Database host |
+| `DB_PORT` | Database port | 
+| `DB_NAME` | Database name |
+| `ENVIRONMENT` | Server deploy environment (`development` or `production`) |
+| `VK_APP_SECRET_KEY` | VK Mini Apps secret key. It is required to authorize users requests |
+| `STATIC_BASE_URL` | Base URL where server can serve static. Works only when `ENVIRONMENT` is equal to `development` |
+| `CDN_BASE_URL` | CDN base URL. Used when server generates assets and returns path to them |
 
-## Скрипты
+## Scripts
 
-| Команда | Описание |
+| Script | Description |
 | --- | --- |
-| `yarn dev` | Запускает проект в dev-режиме отслеживая изменения в файлах и автоматически перезапуская проект |
-| `yarn build` | Собирает проект |
-| `yarn start` | Запускает собранную версию проекта |
-| `yarn tunnel` | Запускает Ngrok туннель на порту указанном в скрипте |
+| `yarn dev` | Starts server in development mode watching for changes and automatically restarting project |
+| `yarn build` | Builds project |
+| `yarn start` | Starts build version of server |
+| `yarn tunnel {port}` | Starts Ngrok tunnel |
 
-## Деплой
-Для запуска проекта необходимо:
-1. Установить зависимости - `yarn install`
-2. Создать `.env` в корне проекта и указать все необходимые переменные (см. пункт выше)
-3. Сбилдить проект - `yarn build` или `tsc`
-4. Запустить - `yarn start` или `dotenv -e .env node build/index.js`
+## Deployment
+To deploy project:
+1. Install dependencies - `yarn install`
+2. Create `.env` file in project root and pass all required [environment variables](#environment-variables)
+3. Build project - `yarn build`
+4. Start project - `yarn start`

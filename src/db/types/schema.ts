@@ -1,12 +1,12 @@
 /**
- * Список коллекций в проекте
+ * List of collections in a project
  */
 export enum Collection {
 }
 
 /**
- * Описание типов данных в каждой из коллекций. В качестве ключа значение
- * из Collection, а значения - какое-либо описание сущности
+ * Description of data types in each collection. Key is a value from Collection
+ * enum and value is a description of value inside a collection
  */
 export interface DbSchema {
 }

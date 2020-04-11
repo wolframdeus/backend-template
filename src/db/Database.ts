@@ -1,6 +1,9 @@
-import {Collection, Db} from 'mongodb';
+import {Collection, CollectionCreateOptions, Db} from 'mongodb';
 import {DbSchema, DbSchemaKey} from './types';
 
+/**
+ * Class which is a wrapper around mongo db
+ */
 export class Database {
   private readonly db: Db;
 
@@ -9,18 +12,20 @@ export class Database {
   }
 
   /**
-   * Создает новую коллекцю
+   * Creates new collection
    * @param {Name} name
+   * @param options
    * @returns {Promise<Collection<DbSchema[Name]>>}
    */
   public createCollection<Name extends DbSchemaKey>(
     name: Name,
+    options?: CollectionCreateOptions,
   ): Promise<Collection<DbSchema[Name]>> {
     return this.db.createCollection<DbSchema[Name]>(String(name));
   }
 
   /**
-   * Возвращает коллекцию
+   * Returns collection
    * @param {Name} name
    * @returns {Collection<DbSchema[Name]>}
    */
