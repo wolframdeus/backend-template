@@ -7,13 +7,17 @@ export type EnvironmentType = 'production' | 'development';
  * Server config
  */
 export interface Config {
-  env: EnvironmentType;
   port: number;
   root: string;
   dbName: string;
   dbHost: string;
   dbPort: number;
-  vkAppSecretKey: string;
+  env: EnvironmentType;
   staticBaseUrl: string;
+  genDirPath: string;
+  publicBaseUrl: string;
+  vkAppSecretKey: string;
+  vkApiRequestsPerSecond: number;
+  vkAppServiceKey: string;
 }
 

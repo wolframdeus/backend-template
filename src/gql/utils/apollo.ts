@@ -1,7 +1,5 @@
 import {ErrorConfig, ApolloError} from 'apollo-errors';
-import config from '../../config';
-
-const isDev = config.env !== 'production';
+import {config as envConfig} from '../../config';
 
 /**
  * Creates GraphQL error
@@ -15,6 +13,7 @@ export function createError(
 ) {
   return class ApolloComputedError extends ApolloError {
     constructor(overriddenConfig: ErrorConfig = {message: ''}) {
+      const isDev = envConfig.env !== 'production';
       const conf = {
         ...config,
         ...overriddenConfig,

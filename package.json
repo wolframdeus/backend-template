@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:wolframdeus/backend-template.git",
-  "author": "wolframdeus <wolfram.deus@gmail.com>",
+  "author": "Vladislav Kibenko <wolfram.deus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "dotenv -e .env -- ts-node-dev --transpileOnly --clear --watch .env -- src/index.ts",
+    "dev": "dotenv -e .env -- ts-node-dev --transpileOnly --clear -- src/index.ts",
     "build": "rimraf dist && tsc",
     "test": "tsc --noEmit",
     "start": "dotenv -e .env -- node dist/index.js",

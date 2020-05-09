@@ -2,7 +2,7 @@ import {AuthenticatedContext, Context} from '../types';
 import {isSignValid} from '../../http/utils';
 import {AuthorizationError} from '../errors';
 import {withErrorCatch} from './withErrorCatch';
-import config from '../../config';
+import {config} from '../../config';
 
 /**
  * Middleware which adds user id in context from request

@@ -1,7 +1,8 @@
 import {ApolloServer} from 'apollo-server-express';
 import {Context, RootTypeResolvers, SubscriptionTypeResolvers} from './types';
 import {Database} from '../db/Database';
-import config from '../config';
+import {config} from '../config';
+import {formatError} from 'graphql';
 
 /**
  * Here we should import types Query, Mutation and Subscription from bridge
@@ -36,7 +37,10 @@ export function createApolloServer(db: Database) {
   return new ApolloServer({
     typeDefs: schema,
     context: (ctx): Context => ({...ctx, db}),
+    // Introspection query is allowed only in development mode. We are
+    // not allowing anyone to research our API
     introspection: config.env === 'development',
+    formatError,
     resolvers: {
       Query,
       Mutation,

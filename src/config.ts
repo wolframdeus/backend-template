@@ -1,14 +1,19 @@
 import {Config, EnvironmentType} from './http/types';
 
-const env = process.env.ENVIRONMENT || 'production';
 const port = Number(process.env.PORT);
-const root = process.env.ROOT;
+const root = process.env.ROOT || '/';
 const dbHost = process.env.DB_HOST;
 const dbPort = Number(process.env.DB_PORT);
 const dbName = process.env.DB_NAME;
+const env = process.env.ENVIRONMENT || 'production';
+const staticBaseUrl = process.env.STATIC_BASE_URL || '/static';
+const genDirPath = process.env.GEN_DIR_PATH;
+const publicBaseUrl = process.env.PUBLIC_BASE_URL;
 const vkAppSecretKey = process.env.VK_APP_SECRET_KEY;
-const staticBaseUrl = process.env.STATIC_BASE_URL;
-const cdnBaseUrl = process.env.CDN_BASE_URL;
+const vkApiRequestsPerSecond = process.env.VK_API_REQUESTS_PER_SECOND
+  ? Number(process.env.VK_API_REQUESTS_PER_SECOND)
+  : 3;
+const vkAppServiceKey = process.env.VK_APP_SERVICE_KEY;
 
 /**
  * Checks if value is EnvironmentType
@@ -26,17 +31,7 @@ function isEnvironmentType(value: any): value is EnvironmentType {
  * @returns {string}
  */
 function getErrorText(envName: string) {
-  return `Environment variable ${envName} not passed`;
-}
-
-if (!isEnvironmentType(env)) {
-  throw new Error(getErrorText('ENVIRONMENT'));
-}
-if (!cdnBaseUrl) {
-  throw new Error(getErrorText('CDN_BASE_URL'));
-}
-if (!staticBaseUrl) {
-  throw new Error(getErrorText('STATIC_BASE_URL'));
+  return `Environment variable ${envName} not passed or has incorrect format`;
 }
 if (Number.isNaN(port)) {
   throw new Error(getErrorText('PORT'));
@@ -53,12 +48,39 @@ if (!dbPort) {
 if (!dbName) {
   throw new Error(getErrorText('DB_NAME'));
 }
+if (!isEnvironmentType(env)) {
+  throw new Error(getErrorText('ENVIRONMENT'));
+}
+if (!staticBaseUrl) {
+  throw new Error(getErrorText('STATIC_BASE_URL'));
+}
+if (!genDirPath) {
+  throw new Error(getErrorText('GEN_DIR_PATH'));
+}
+if (!publicBaseUrl) {
+  throw new Error(getErrorText('PUBLIC_BASE_URL'));
+}
+if (!vkAppServiceKey) {
+  throw new Error(getErrorText('VK_APP_SERVICE_KEY'));
+}
+if (Number.isNaN(vkApiRequestsPerSecond)) {
+  throw new Error(getErrorText('VK_API_REQUESTS_PER_SECOND'));
+}
 if (!vkAppSecretKey) {
   throw new Error(getErrorText('VK_APP_SECRET_KEY'));
 }
 
-const config: Config = {
-  env, port, root, dbHost, dbPort, dbName, vkAppSecretKey, staticBaseUrl
+export const config: Config = {
+  port,
+  root,
+  dbHost,
+  dbPort,
+  dbName,
+  env,
+  staticBaseUrl,
+  genDirPath,
+  publicBaseUrl,
+  vkAppSecretKey,
+  vkAppServiceKey,
+  vkApiRequestsPerSecond,
 };
-
-export default config;

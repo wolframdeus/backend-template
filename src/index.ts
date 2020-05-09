@@ -1,7 +1,7 @@
 import {runHttpServer} from './http/runHttpServer';
 import {fork, isMaster} from 'cluster';
 import os from 'os';
-import config from './config';
+import {config} from './config';
 import {init as initDb} from './db/init';
 
 (async () => {

@@ -1,4 +1,4 @@
-import config from '../config';
+import {config} from '../config';
 import {MongoClient} from 'mongodb';
 import {Database} from './Database';
 
@@ -24,7 +24,7 @@ export function createDb(client: MongoClient): Database {
 }
 
 /**
- * Creates required structure for database
+ * Creates required structure for database (collection, indexes, etc.)
  * @param {Database} db
  * @returns {Promise<void>}
  */

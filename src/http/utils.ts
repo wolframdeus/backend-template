@@ -22,7 +22,7 @@ export function isSignValid(
     .sort()
     .reduce<Record<string, string>>((acc, key) => {
       const value = query[key];
-      // Берем только ключи начинающиеся с vk_
+      // Take only keys started with vk_
       if (key.slice(0, 3) === 'vk_' && typeof value === 'string') {
         acc[key] = value;
       }

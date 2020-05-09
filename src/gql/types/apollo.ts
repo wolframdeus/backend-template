@@ -3,7 +3,7 @@ import {Database} from '../../db/Database';
 import {Resolver} from 'apollo-resolvers';
 
 /**
- * COntext base
+ * Context base
  */
 export interface Context {
   db: Database;
@@ -13,7 +13,9 @@ export interface Context {
 /**
  * Context where user is verified
  */
-export type AuthenticatedContext = Context & { userId: number };
+export interface AuthenticatedContext extends Context {
+  userId: number
+}
 
 /**
  * Resolvers description of type
