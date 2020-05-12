@@ -1,7 +1,10 @@
 import {ApolloServer} from 'apollo-server-express';
-import {Context, RootTypeResolvers, SubscriptionTypeResolvers} from './types';
-import {Database} from '../db/Database';
-import {config} from '../config';
+import {
+  Context,
+  CreateApolloServerOptions,
+  RootTypeResolvers,
+  SubscriptionTypeResolvers,
+} from './types';
 import {formatError} from 'graphql';
 
 /**
@@ -26,20 +29,21 @@ type Subscription {
 
 /**
  * Creates ApolloServer
- * @param {Database} db
  * @returns {ApolloServer}
+ * @param options
  */
-export function createApolloServer(db: Database) {
+export function createApolloServer(options: CreateApolloServerOptions) {
+  const {db, vkAPI, isDev} = options;
   const Query: RootTypeResolvers<Query> = {};
   const Mutation: RootTypeResolvers<Mutation> = {};
   const Subscription: SubscriptionTypeResolvers<Subscription> = {};
 
   return new ApolloServer({
     typeDefs: schema,
-    context: (ctx): Context => ({...ctx, db}),
+    context: (ctx): Context => ({...ctx, db, vkAPI}),
     // Introspection query is allowed only in development mode. We are
     // not allowing anyone to research our API
-    introspection: config.env === 'development',
+    introspection: isDev,
     formatError,
     resolvers: {
       Query,

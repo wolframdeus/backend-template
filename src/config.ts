@@ -1,5 +1,4 @@
 import {Config, EnvironmentType} from './http/types';
-import {yellow} from 'chalk';
 
 const port = Number(process.env.PORT);
 const root = process.env.ROOT || '/';
@@ -85,5 +84,3 @@ export const config: Config = {
   vkAppServiceKey,
   vkApiRequestsPerSecond,
 };
-
-console.log(yellow('Config is fine:'), config);

@@ -1,12 +1,14 @@
 import {Request} from 'express';
 import {Database} from '../../db/Database';
 import {Resolver} from 'apollo-resolvers';
+import {VKAPIInterface} from 'vkontakte-api';
 
 /**
  * Context base
  */
 export interface Context {
   db: Database;
+  vkAPI: VKAPIInterface;
   req: Request;
 }
 
@@ -14,7 +16,7 @@ export interface Context {
  * Context where user is verified
  */
 export interface AuthenticatedContext extends Context {
-  userId: number
+  userId: number;
 }
 
 /**

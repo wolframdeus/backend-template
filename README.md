@@ -1,4 +1,4 @@
-# backend-template
+# backend
 
 ## Environment variables
 
@@ -30,6 +30,7 @@ into this file:
 | `yarn tunnel {port}` | Starts Ngrok tunnel |
 
 ## Deployment
+
 1. Install dependencies - `yarn install`
 2. Create `.env` file in project root and pass all required [environment variables](#environment-variables)
 3. Build project - `yarn build`
@@ -39,5 +40,7 @@ into this file:
 
 To commit project changes `conventional-github-releaser` is used. It means,
 `CONVENTIONAL_GITHUB_RELEASER_TOKEN` env variable is required. To get it, 
-follow this [link](https://github.com/settings/tokens/new). Create a token
-with scope `repo`
+follow this [link](https://github.com/settings/tokens/new) and create a token
+with scope `repo`. 
+
+Then, add variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN=my_token` to `.env` file.

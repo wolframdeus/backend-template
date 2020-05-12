@@ -1,19 +1,23 @@
 import {createServer} from 'http';
 import express from 'express';
 import chalk from 'chalk';
-import {config} from '../config';
 import cors from 'cors';
 import path from 'path';
 import {createApolloServer} from '../gql/createApolloServer';
 import {createDb, createMongoClient} from '../db';
 import {getRootRouter} from './routes/getRootRouter';
 
+import {RunHttpServerOptions} from './types';
+import {VKAPI} from 'vkontakte-api';
+import {VKAPISlave} from 'vkontakte-api/dist/multithreading/VKAPISlave';
+
 /**
  * Starts HTTP-server
  * @returns {Promise<void>}
  */
-export async function runHttpServer() {
-  const {port, root, env} = config;
+export async function runHttpServer(options: RunHttpServerOptions) {
+  const {singleThreadMode, config} = options;
+  const {port, root, env, vkApiRequestsPerSecond, vkAppServiceKey} = config;
 
   // Connect mongo client
   const client = createMongoClient();
@@ -27,7 +31,19 @@ export async function runHttpServer() {
   const server = createServer(app);
 
   // Create Apollo server
-  const apolloServer = createApolloServer(db);
+  const apolloServer = createApolloServer({
+    db,
+    isDev: env === 'development',
+    // In single thread mode, it is required to create instance of VKAPI.
+    // Otherwise, master thread had to create it and here we are only
+    // creating slave which communicates with master
+    vkAPI: singleThreadMode
+      ? new VKAPI({
+        requestsPerSecond: vkApiRequestsPerSecond,
+        accessToken: vkAppServiceKey,
+      })
+      : new VKAPISlave(),
+  });
 
   app.use(cors());
 

@@ -21,3 +21,17 @@ export interface Config {
   vkAppServiceKey: string;
 }
 
+/**
+ * Http server run options
+ */
+export interface RunHttpServerOptions {
+  /**
+   * States if http server is ran in single thread mode
+   */
+  singleThreadMode: boolean;
+
+  /**
+   * Env config
+   */
+  config: Config;
+}
