@@ -34,3 +34,10 @@ into this file:
 2. Create `.env` file in project root and pass all required [environment variables](#environment-variables)
 3. Build project - `yarn build`
 4. Start project - `yarn start`
+
+## Development
+
+To commit project changes `conventional-github-releaser` is used. It means,
+`CONVENTIONAL_GITHUB_RELEASER_TOKEN` env variable is required. To get it, 
+follow this [link](https://github.com/settings/tokens/new). Create a token
+with scope `repo`
