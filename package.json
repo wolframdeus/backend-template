@@ -1,6 +1,6 @@
 {
   "name": "backend-template",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "index.js",
   "repository": "git@github.com:wolframdeus/backend-template.git",
   "author": "Vladislav Kibenko <wolfram.deus@gmail.com>",
@@ -16,7 +16,8 @@
     "tunnel": "ngrok http --region eu ",
     "release": "standard-version -a",
     "release:tags": "git push --follow-tags origin master",
-    "release:github": "dotenv -e .env -- conventional-github-releaser -p eslint"
+    "release:github": "dotenv -e .env -- conventional-github-releaser -p eslint",
+    "postrelease": "npm-run-all release:*"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
