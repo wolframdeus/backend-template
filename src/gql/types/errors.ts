@@ -3,5 +3,6 @@
  */
 export enum ApolloError {
   Authorization = 'AuthorizationError',
+  UserNotFound = 'UserNotFoundError',
   Unknown = 'UnknownError',
 }

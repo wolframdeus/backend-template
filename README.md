@@ -38,9 +38,14 @@ into this file:
 
 ## Development
 
+### Committing
 To commit project changes `conventional-github-releaser` is used. It means,
 `CONVENTIONAL_GITHUB_RELEASER_TOKEN` env variable is required. To get it, 
 follow this [link](https://github.com/settings/tokens/new) and create a token
 with scope `repo`. 
 
 Then, add variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN=my_token` to `.env` file.
+
+### GraphQL playground
+In **development** mode, GraphQL Playground becomes available on address
+`http://localhost:$PORT$ROOT/gql`

@@ -1,31 +1,20 @@
-import {ApolloServer} from 'apollo-server-express';
+import {ApolloServer, PubSub} from 'apollo-server-express';
 import {
   Context,
   CreateApolloServerOptions,
   RootTypeResolvers,
   SubscriptionTypeResolvers,
+  schema,
+  Query,
+  Mutation,
+  Subscription,
 } from './types';
 import {formatError} from 'graphql';
 
-/**
- * Here we should import types Query, Mutation and Subscription from bridge
- * and replace these below. Moreover, it is needed to import text
- * representation of schema and use it in typeDefs.
- */
-type Query = {};
-type Mutation = {};
-type Subscription = {};
-const schema = `
-type Query {
-  test: Boolean!
-}
-type Mutation {
-  test: Boolean!
-}
-type Subscription {
-  test: Boolean!
-}
-`;
+import {userResolver} from './resolvers/Query/user';
+import {userByIdResolver} from './resolvers/Query/userById';
+import {registerResolver} from './resolvers/Mutation/register';
+import {userSubscription} from './resolvers/Subscription/user';
 
 /**
  * Creates ApolloServer
@@ -34,21 +23,30 @@ type Subscription {
  */
 export function createApolloServer(options: CreateApolloServerOptions) {
   const {db, vkAPI, isDev} = options;
-  const Query: RootTypeResolvers<Query> = {};
-  const Mutation: RootTypeResolvers<Mutation> = {};
-  const Subscription: SubscriptionTypeResolvers<Subscription> = {};
+  const pubSub = new PubSub();
+
+  const query: RootTypeResolvers<Query> = {
+    user: userResolver,
+    userById: userByIdResolver,
+  };
+  const mutation: RootTypeResolvers<Mutation> = {
+    register: registerResolver,
+  };
+  const subscription: SubscriptionTypeResolvers<Subscription> = {
+    user: {subscribe: userSubscription},
+  };
 
   return new ApolloServer({
     typeDefs: schema,
-    context: (ctx): Context => ({...ctx, db, vkAPI}),
+    context: (ctx): Context => ({...ctx, db, vkAPI, pubSub}),
     // Introspection query is allowed only in development mode. We are
     // not allowing anyone to research our API
     introspection: isDev,
     formatError,
     resolvers: {
-      Query,
-      Mutation,
-      Subscription,
+      Query: query,
+      Mutation: mutation,
+      Subscription: subscription,
     },
   });
 }
