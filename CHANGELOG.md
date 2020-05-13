@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/wolframdeus/backend-template/compare/v1.2.0...v1.3.0) (2020-05-13)
+
+
+### Features
+
+* **backgroundworker:** added BackgroundWorker class ([21fb531](https://github.com/wolframdeus/backend-template/commit/21fb531e3a876e42869a2c99be2f24fa2a6ba266))
+
 ## [1.2.0](https://github.com/wolframdeus/backend-template/compare/v1.1.1...v1.2.0) (2020-05-13)
 
 
