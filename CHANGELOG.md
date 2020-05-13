@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/wolframdeus/backend-template/compare/v1.1.1...v1.2.0) (2020-05-13)
+
+
+### Features
+
+* vkapi, graphql-bridge dep, resolvers example ([463c41c](https://github.com/wolframdeus/backend-template/commit/463c41c04370daab2d609cc97e584091b53104b1))
+
 ### [1.1.1](https://github.com/wolframdeus/backend-template/compare/v1.1.0...v1.1.1) (2020-05-12)
 
 ## [1.1.0](https://github.com/wolframdeus/backend-template/compare/v1.0.3...v1.1.0) (2020-05-12)
