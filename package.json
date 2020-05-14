@@ -55,7 +55,6 @@
     "express": "^4.17.1",
     "graphql": "^14.6.0",
     "graphql-bridge": "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git",
-    "graphql-bridge-template": "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git",
     "mongodb": "^3.5.5",
     "vkontakte-api": "^1.1.2"
   },

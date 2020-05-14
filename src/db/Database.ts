@@ -21,7 +21,7 @@ export class Database {
     name: Name,
     options?: CollectionCreateOptions,
   ): Promise<Collection<DbSchema[Name]>> {
-    return this.db.createCollection<DbSchema[Name]>(String(name));
+    return this.db.createCollection<DbSchema[Name]>(String(name), options);
   }
 
   /**
