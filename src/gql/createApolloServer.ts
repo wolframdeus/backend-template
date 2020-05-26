@@ -9,7 +9,7 @@ import {
   Mutation,
   Subscription,
 } from './types';
-import {formatError} from 'graphql';
+import {formatError} from 'apollo-errors';
 
 import {userResolver} from './resolvers/Query/user';
 import {userByIdResolver} from './resolvers/Query/userById';
@@ -42,6 +42,9 @@ export function createApolloServer(options: CreateApolloServerOptions) {
     // Introspection query is allowed only in development mode. We are
     // not allowing anyone to research our API
     introspection: isDev,
+    // formatError from graphql package incorrectly parses error on output. So,
+    // we had to use this function from apollo-errors
+    // @ts-ignore
     formatError,
     resolvers: {
       Query: query,

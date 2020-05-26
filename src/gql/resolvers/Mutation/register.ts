@@ -21,7 +21,12 @@ export const registerResolver = withAuth.createResolver(
         fields: [],
       });
 
-      // Here we can do with this information whatever we want
+      // In case, user is banned or deleted, "deactivated" field exists in user
+      if (!('deactivated' in user)) {
+
+      }
+
+      // Here we can do whatever with this information we want
     }
 
     return true;

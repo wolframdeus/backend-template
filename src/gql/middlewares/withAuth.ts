@@ -1,5 +1,5 @@
 import {AuthenticatedContext, Context} from '../types';
-import {isSignValid} from '../../http/utils';
+import {isSignValid} from '../../lib/utils';
 import {AuthorizationError} from '../errors';
 import {withErrorCatch} from './withErrorCatch';
 import {config} from '../../config';

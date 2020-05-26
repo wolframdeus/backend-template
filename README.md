@@ -48,4 +48,5 @@ Then, add variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN=my_token` to `.env` file.
 
 ### GraphQL playground
 In **development** mode, GraphQL Playground becomes available on address
-`http://localhost:$PORT$ROOT/gql`
+`http://localhost:$PORT$ROOT/gql`. In production, introspection query is
+forbidden.

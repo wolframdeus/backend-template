@@ -1,3 +1,5 @@
+import {VKAPIInterface} from 'vkontakte-api';
+
 /**
  * Deploy environment type
  */
@@ -25,13 +27,9 @@ export interface Config {
  * Http server run options
  */
 export interface RunHttpServerOptions {
-  /**
-   * States if http server is ran in single thread mode
-   */
-  singleThreadMode: boolean;
-
-  /**
-   * Env config
-   */
-  config: Config;
+  port: number;
+  root: string;
+  isDev: boolean;
+  staticBaseUrl: string;
+  vkAPI: VKAPIInterface;
 }

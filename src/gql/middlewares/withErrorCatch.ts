@@ -3,7 +3,7 @@ import {isInstance} from 'apollo-errors';
 import {UnknownError} from '../errors';
 
 /**
- * Emergency resolver. Catches error if it was not catched before
+ * Emergency resolver. Catches error if it was not caught before
  * @type {Resolver<unknown>}
  */
 export const withErrorCatch = createResolver(

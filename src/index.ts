@@ -3,19 +3,34 @@ import {fork, isMaster, Worker} from 'cluster';
 import os from 'os';
 import {config} from './config';
 import {init as initDb} from './db/init';
-import {VKAPI, VKAPIMaster} from 'vkontakte-api';
+import {VKAPI, VKAPIMaster, VKAPISlave} from 'vkontakte-api';
 import {yellow} from 'chalk';
 
-(async () => {
-  const {env, vkAppServiceKey, vkApiRequestsPerSecond} = config;
+/**
+ * Initializes project
+ * @returns {Promise<void>}
+ */
+const init = async () => {
+  const {
+    env, vkAppServiceKey, vkApiRequestsPerSecond, port, root, staticBaseUrl,
+  } = config;
+  const isDev = env === 'development';
+  const vkAPI = isDev || isMaster
+    ? new VKAPI({
+      requestsPerSecond: vkApiRequestsPerSecond,
+      accessToken: vkAppServiceKey,
+    })
+    : new VKAPISlave();
 
-  if (env === 'development') {
+  if (isDev) {
     // Output config
     console.log(yellow('Config is fine:'), config);
 
     // Recreate structure of database
     await initDb();
-    return runHttpServer({singleThreadMode: true, config});
+
+    // Run HTTP server
+    return runHttpServer({port, root, isDev, vkAPI, staticBaseUrl});
   }
 
   if (isMaster) {
@@ -25,7 +40,7 @@ import {yellow} from 'chalk';
     // Recreate structure of database
     await initDb();
 
-    // Create maximum count of clusters process supports
+    // Create maximum count of clusters OS supports
     const cpuCount = os.cpus().length;
     const workers: Worker[] = [];
 
@@ -34,15 +49,14 @@ import {yellow} from 'chalk';
     }
 
     // In master we do create VKAPI instance, because slaves should
-    // communicate with single its instance
-    new VKAPIMaster({
-      threads: workers,
-      client: new VKAPI({
-        requestsPerSecond: vkApiRequestsPerSecond,
-        accessToken: vkAppServiceKey,
-      }),
-    });
+    // communicate with single its instance, which is VKAPIMaster
+    new VKAPIMaster({threads: workers, client: vkAPI});
   } else {
-    return runHttpServer({singleThreadMode: false, config});
+    return runHttpServer({port, root, isDev, vkAPI, staticBaseUrl});
   }
-})();
+};
+
+init().catch(e => {
+  console.error(e);
+  process.exit(1);
+});

@@ -2964,7 +2964,7 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-"graphql-bridge-template@git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git", "graphql-bridge@git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git":
+"graphql-bridge@git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git":
   version "1.0.3"
   resolved "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git#6dd2d39ccd37dc3163579a3b53e671d3f5a21354"
 
@@ -6160,10 +6160,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vkontakte-api@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/vkontakte-api/-/vkontakte-api-1.1.2.tgz#51c21f106bffaaa6d34a028eee80713ec63810de"
-  integrity sha512-YNEMKRmGP/fYo9O55B3p3iSkoCZzxrjt3PjsuPME5UxIG9OHp8pErKsMhn98fLjdsUBMpgBmgw4mcXO8ga7azw==
+vkontakte-api@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/vkontakte-api/-/vkontakte-api-1.1.6.tgz#20e97de89baf1bd5cd87a045c9600b1c2b6e367b"
+  integrity sha512-1CkqI+iwc9zJLjAY/gPqTjuRJzul8TOY1pwTKcyNYtiBCa9+Sez24xuXcUavT5m1SlRHD0kUANc5b2QpYL/KpA==
   dependencies:
     event-emitter "^0.3.5"
     isomorphic-fetch "^2.2.1"
