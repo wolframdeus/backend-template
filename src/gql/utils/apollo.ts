@@ -9,12 +9,13 @@ import {config as envConfig} from '../../config';
  */
 export function createError(
   name: string,
-  config: ErrorConfig = {message: ''},
+  config: Partial<ErrorConfig> = {},
 ) {
   return class ApolloComputedError extends ApolloError {
-    constructor(overriddenConfig: ErrorConfig = {message: ''}) {
+    constructor(overriddenConfig: Partial<ErrorConfig> = {}) {
       const isDev = envConfig.env !== 'production';
-      const conf = {
+      const conf: ErrorConfig = {
+        message: '',
         ...config,
         ...overriddenConfig,
         options: {
