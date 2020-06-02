@@ -1,4 +1,5 @@
 import {VKAPIInterface} from 'vkontakte-api';
+import {Database} from '../db/Database';
 
 /**
  * Deploy environment type
@@ -32,4 +33,5 @@ export interface RunHttpServerOptions {
   isDev: boolean;
   staticBaseUrl: string;
   vkAPI: VKAPIInterface;
+  db: Database;
 }

@@ -2,43 +2,68 @@ import {runHttpServer} from './http/runHttpServer';
 import {fork, isMaster, Worker} from 'cluster';
 import os from 'os';
 import {config} from './config';
-import {init as initDb} from './db/init';
+import {createDb, createMongoClient, initDatabase} from './db';
 import {VKAPI, VKAPIMaster, VKAPISlave} from 'vkontakte-api';
 import {yellow} from 'chalk';
+import {Config} from './http/types';
 
 /**
- * Initializes project
+ * Initializes dev variant of server
  * @returns {Promise<void>}
  */
-const init = async () => {
+async function initDev(config: Config) {
   const {
-    env, vkAppServiceKey, vkApiRequestsPerSecond, port, root, staticBaseUrl,
+    port, root, dbHost, dbPort, dbName, vkAppServiceKey, vkApiRequestsPerSecond,
+    staticBaseUrl,
   } = config;
-  const isDev = env === 'development';
-  const vkAPI = isDev || isMaster
+
+  // Create structure of database
+  const db = await initDatabase(dbHost, dbPort, dbName);
+
+  // Run HTTP server
+  return runHttpServer({
+    port,
+    root,
+    isDev: true,
+    vkAPI: new VKAPI({
+      requestsPerSecond: vkApiRequestsPerSecond,
+      accessToken: vkAppServiceKey,
+    }),
+    staticBaseUrl,
+    db,
+  });
+}
+
+/**
+ * Application main entry function. Initializes clusters, HTTP and Apollo
+ * server
+ * @returns {Promise<void>}
+ */
+async function init(config: Config) {
+  // Output config
+  console.log(yellow('Config:'), config);
+
+  if (config.env === 'development') {
+    return initDev(config);
+  }
+
+  const {
+    dbName, dbPort, dbHost, vkAppServiceKey, vkApiRequestsPerSecond, port, root,
+    staticBaseUrl,
+  } = config;
+  const vkAPI = isMaster
     ? new VKAPI({
       requestsPerSecond: vkApiRequestsPerSecond,
       accessToken: vkAppServiceKey,
     })
     : new VKAPISlave();
 
-  if (isDev) {
-    // Output config
-    console.log(yellow('Config is fine:'), config);
-
-    // Recreate structure of database
-    await initDb();
-
-    // Run HTTP server
-    return runHttpServer({port, root, isDev, vkAPI, staticBaseUrl});
-  }
-
   if (isMaster) {
     // Output config
     console.log(yellow('Config is fine:'), config);
 
-    // Recreate structure of database
-    await initDb();
+    // Create structure of database
+    await initDatabase(dbHost, dbPort, dbName);
 
     // Create maximum count of clusters OS supports
     const cpuCount = os.cpus().length;
@@ -52,11 +77,22 @@ const init = async () => {
     // communicate with single its instance, which is VKAPIMaster
     new VKAPIMaster({threads: workers, client: vkAPI});
   } else {
-    return runHttpServer({port, root, isDev, vkAPI, staticBaseUrl});
-  }
-};
+    const client = createMongoClient(dbHost, dbPort);
+    await client.connect();
 
-init().catch(e => {
+    // In slaves, we do create HTTP server
+    return runHttpServer({
+      port,
+      root,
+      isDev: false,
+      vkAPI,
+      staticBaseUrl,
+      db: createDb(client, dbName),
+    });
+  }
+}
+
+init(config).catch(e => {
   console.error(e);
   process.exit(1);
 });

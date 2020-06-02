@@ -1,4 +1,3 @@
-import {config} from '../config';
 import {MongoClient} from 'mongodb';
 import {Database} from './Database';
 
@@ -6,21 +5,21 @@ import {Database} from './Database';
  * Creates mongo client
  * @returns {MongoClient}
  */
-export function createMongoClient(): MongoClient {
-  const {dbHost, dbPort} = config;
-  const connectionString = `mongodb://${dbHost}:${dbPort}`;
+export function createMongoClient(host: string, port: number): MongoClient {
+  const connectionString = `mongodb://${host}:${port}`;
   return new MongoClient(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
+  });
 }
 
 /**
- * Creates wrapper to work with database
+ * Creates wrapper around mongo db to work with database
  * @param client
+ * @param dbName
  */
-export function createDb(client: MongoClient): Database {
-  return new Database(client.db(config.dbName))
+export function createDb(client: MongoClient, dbName: string): Database {
+  return new Database(client.db(dbName));
 }
 
 /**
@@ -28,5 +27,7 @@ export function createDb(client: MongoClient): Database {
  * @param {Database} db
  * @returns {Promise<void>}
  */
+// eslint-disable-next-line max-len
+// eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
 export async function prepareDb(db: Database) {
 }

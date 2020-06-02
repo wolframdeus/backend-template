@@ -4,7 +4,6 @@ import chalk from 'chalk';
 import cors from 'cors';
 import path from 'path';
 import {createApolloServer} from '../gql/createApolloServer';
-import {createDb, createMongoClient} from '../db';
 import {getRootRouter} from './routes/getRootRouter';
 
 import {RunHttpServerOptions} from './types';
@@ -14,16 +13,7 @@ import {RunHttpServerOptions} from './types';
  * @returns {Promise<void>}
  */
 export async function runHttpServer(options: RunHttpServerOptions) {
-  const {
-    port, root, isDev, staticBaseUrl, vkAPI,
-  } = options;
-
-  // Connect mongo client
-  const client = createMongoClient();
-  await client.connect();
-
-  // Create database
-  const db = createDb(client);
+  const {port, root, isDev, staticBaseUrl, vkAPI, db} = options;
 
   // Create Express-server
   const app = express();

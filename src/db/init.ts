@@ -1,13 +1,18 @@
 import {createDb, createMongoClient, prepareDb} from './utils';
 
 /**
- * Initializes database
- * @returns {Promise<void>}
+ * Creates database and its structure
+ * @param {string} host
+ * @param {number} port
+ * @param {string} dbName
+ * @returns {Promise<Database>}
  */
-export async function init() {
-  const client = createMongoClient();
+export async function initDatabase(host: string, port: number, dbName: string) {
+  const client = createMongoClient(host, port);
   await client.connect();
-  const db = createDb(client);
+  const db = createDb(client, dbName);
 
   await prepareDb(db);
+
+  return db;
 }
