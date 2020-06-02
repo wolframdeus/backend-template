@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.6](https://github.com/wolframdeus/backend-template/compare/v1.3.5...v1.3.6) (2020-06-02)
+
+
+### Bug Fixes
+
+* **apollo:** unified createError and creation of withAuth resolver ([23e16bf](https://github.com/wolframdeus/backend-template/commit/23e16bf805fc8010da03496ed119fc24c7e86f64))
+
 ### [1.3.5](https://github.com/wolframdeus/backend-template/compare/v1.3.4...v1.3.5) (2020-06-02)
 
 
