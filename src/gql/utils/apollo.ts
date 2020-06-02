@@ -1,19 +1,23 @@
 import {ErrorConfig, ApolloError} from 'apollo-errors';
-import {config as envConfig} from '../../config';
+import {withErrorCatch} from '../middlewares/withErrorCatch';
+import {AuthenticatedContext, Context} from '../types';
+import {isSignValid} from '../../lib/utils';
+import {AuthorizationError} from '../errors';
 
 /**
  * Creates GraphQL error
  * @param {string} name
+ * @param isDev
  * @param {ErrorConfig} config
  * @returns {ApolloError}
  */
 export function createError(
   name: string,
+  isDev = false,
   config: Partial<ErrorConfig> = {},
 ) {
   return class ApolloComputedError extends ApolloError {
     constructor(overriddenConfig: Partial<ErrorConfig> = {}) {
-      const isDev = envConfig.env !== 'production';
       const conf: ErrorConfig = {
         message: '',
         ...config,
