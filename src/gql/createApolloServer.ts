@@ -42,6 +42,7 @@ export function createApolloServer(options: CreateApolloServerOptions) {
     // Introspection query is allowed only in development mode. We are
     // not allowing anyone to research our API
     introspection: isDev,
+    playground: isDev,
     // formatError from graphql package incorrectly parses error on output. So,
     // we had to use this function from apollo-errors
     // @ts-ignore

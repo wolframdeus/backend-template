@@ -1,6 +1,7 @@
 import {withAuth} from '../../middlewares/withAuth';
 import {Mutation} from '../../types/schema';
 import {AuthenticatedContext} from '../../types';
+import {UserDeactivatedError} from '../../errors';
 
 /**
  * Registers user in system
@@ -22,8 +23,8 @@ export const registerResolver = withAuth.createResolver(
       });
 
       // In case, user is banned or deleted, "deactivated" field exists in user
-      if (!('deactivated' in user)) {
-
+      if ('deactivated' in user) {
+        throw new UserDeactivatedError();
       }
 
       // Here we can do whatever with this information we want
