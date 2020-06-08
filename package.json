@@ -1,6 +1,6 @@
 {
   "name": "backend-template",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "main": "index.js",
   "repository": "git@github.com:wolframdeus/backend-template.git",
   "author": "Vladislav Kibenko <wolfram.deus@gmail.com>",

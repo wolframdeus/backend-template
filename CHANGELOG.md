@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.7](https://github.com/wolframdeus/backend-template/compare/v1.3.6...v1.3.7) (2020-06-08)
+
+
+### Bug Fixes
+
+* **errors and register:** reformatted error names and refactor register ([29fbd97](https://github.com/wolframdeus/backend-template/commit/29fbd975d7858f408a9aa9706f364a648ec6149d))
+
 ### [1.3.6](https://github.com/wolframdeus/backend-template/compare/v1.3.5...v1.3.6) (2020-06-02)
 
 
