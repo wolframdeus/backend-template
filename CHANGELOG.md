@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/wolframdeus/backend-template/compare/v1.4.1...v1.5.0) (2020-06-16)
+
+
+### Features
+
+* **db:** add index and collection creation functions ([f07897c](https://github.com/wolframdeus/backend-template/commit/f07897cbabdb135c85dda65d6bd82dd8f1d5aef2))
+
 ### [1.4.1](https://github.com/wolframdeus/backend-template/compare/v1.4.0...v1.4.1) (2020-06-16)
 
 ## [1.4.0](https://github.com/wolframdeus/backend-template/compare/v1.3.7...v1.4.0) (2020-06-16)
