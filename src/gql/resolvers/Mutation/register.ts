@@ -28,7 +28,12 @@ export const registerResolver = withAuth.createResolver(
 
       // Here we can do whatever with this information we want. Just insert new
       // entity
-      await collection.insertOne({vkUserId: userId});
+      const {firstName, lastName} = user;
+      await collection.insertOne({
+        vkUserId: userId,
+        firstName,
+        lastName,
+      });
     }
 
     return userId;

@@ -1,22 +1,33 @@
 import {withAuth} from '../../middlewares/withAuth';
-import {Query} from '../../types';
+import {AuthenticatedContext, Query} from '../../types';
 import {UserNotFoundError} from '../../errors';
+import {CollectionEnum} from '../../../db/types';
 
 /**
  * Returns user by id
  * @type {Resolver<Query.user>}
  */
 export const userByIdResolver = withAuth.createResolver(
-  (_, args: Query.userById.Arguments): Query.userById => {
+  async (
+    _,
+    args: Query.userById.Arguments,
+    context: AuthenticatedContext,
+  ): Promise<Query.userById> => {
     const {userId} = args;
+    const {db} = context;
+    const user = await db
+      .collection(CollectionEnum.Users)
+      .findOne({vkUserId: userId});
 
-    if (userId !== 1) {
+    if (!user) {
       throw new UserNotFoundError();
     }
+    const {_id, vkUserId, lastName, firstName} = user;
 
     return {
-      id: 1,
-      name: 'Best programmer ever!',
+      id: _id.toHexString(),
+      vkUserId,
+      name: `${firstName} ${lastName}`,
     };
   },
 );
