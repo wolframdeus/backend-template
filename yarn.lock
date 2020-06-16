@@ -2915,9 +2915,9 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-"graphql-bridge@git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git":
-  version "1.0.3"
-  resolved "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git#6dd2d39ccd37dc3163579a3b53e671d3f5a21354"
+"graphql-bridge-template@git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git":
+  version "1.0.6"
+  resolved "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git#c9791226582ea614292b96f7a700cc20a324673d"
 
 graphql-extensions@^0.11.1:
   version "0.11.1"

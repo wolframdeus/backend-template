@@ -1,7 +1,10 @@
+import {User} from './entities';
+
 /**
  * List of collections in a project
  */
-export enum Collection {
+export enum CollectionEnum {
+  Users = 'users'
 }
 
 /**
@@ -9,6 +12,7 @@ export enum Collection {
  * enum and value is a description of value inside a collection
  */
 export interface DbSchema {
+  [CollectionEnum.Users]: User;
 }
 
 export type DbSchemaKey = keyof DbSchema;

@@ -26,19 +26,24 @@ export declare namespace User {
      */
     type id = any;
     /**
+     * VKontakte unique identifier
+     */
+    type vkUserId = number;
+    /**
      * Full user name
      */
     type name = string;
 }
 export interface User {
     id: User.id;
+    vkUserId: User.vkUserId;
     name: User.name;
 }
 export declare namespace Mutation {
     /**
-     * Registers user
+     * Registers user. Returns his identifier
      */
-    type register = boolean;
+    type register = number;
 }
 export interface Mutation {
     register: Mutation.register;
