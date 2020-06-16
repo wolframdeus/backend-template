@@ -67,7 +67,8 @@ To commit project changes `conventional-github-releaser` is used. It means,
 follow this [link](https://github.com/settings/tokens/new) and create a token
 with scope `repo`. 
 
-Then, add variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN=my_token` to `.env` file.
+Then, add variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN=my_token` to 
+`.conventional.env` file.
 
 ### GraphQL playground
 In **development** mode, GraphQL Playground becomes available on address

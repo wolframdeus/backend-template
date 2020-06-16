@@ -19,7 +19,7 @@
     "tunnel": "ngrok http --region eu ",
     "release": "standard-version -a",
     "release:tags": "git push --follow-tags origin master",
-    "release:github": "dotenv -e .env -- conventional-github-releaser -p eslint",
+    "release:github": "dotenv -e .conventional.env -- conventional-github-releaser -p eslint",
     "postrelease": "npm-run-all release:*"
   },
   "devDependencies": {
