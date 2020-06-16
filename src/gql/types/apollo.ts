@@ -1,5 +1,5 @@
 import {Request} from 'express';
-import {Database} from '../../db/Database';
+import {Database, User} from '../../db';
 import {PubSub} from 'apollo-server-express';
 import {Resolver} from 'apollo-resolvers';
 import {VKAPIInterface} from 'vkontakte-api';
@@ -36,6 +36,13 @@ export interface Context {
  */
 export interface AuthenticatedContext extends Context {
   userId: number;
+}
+
+/**
+ * Context where user is passed
+ */
+export interface PersonalizedContext extends AuthenticatedContext {
+  user: User;
 }
 
 /**
