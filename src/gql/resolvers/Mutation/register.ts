@@ -17,13 +17,13 @@ export const registerResolver = withAuth.createResolver(
 
     if (!userIsRegistered) {
       // Getting user information from VKontakte
-      const user = await vkAPI.users.get({
+      const [user] = await vkAPI.users.get({
         userIds: [userId],
         fields: [],
       });
 
       // In case, user is banned or deleted, "deactivated" field exists in user
-      if ('deactivated' in user) {
+      if (!user || 'deactivated' in user) {
         throw new UserDeactivatedError();
       }
 
