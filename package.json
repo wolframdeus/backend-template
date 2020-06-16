@@ -57,7 +57,7 @@
     "graphql": "^14.6.0",
     "graphql-bridge-template": "git+ssh://git@github.com:wolframdeus/graphql-bridge-template.git",
     "mongodb": "^3.5.5",
-    "vkontakte-api": "^1.3.8"
+    "vkontakte-api": "^1.3.9"
   },
   "config": {
     "commitizen": {

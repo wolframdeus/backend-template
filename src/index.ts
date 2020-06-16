@@ -72,7 +72,8 @@ async function init(config: Config) {
 
     // In master we do create VKAPI instance, because slaves should
     // communicate with single its instance, which is VKAPIMaster
-    new VKAPIMaster({workers, instance: vkAPI});
+    const master = new VKAPIMaster({workers, instance: vkAPI});
+    master.init();
   } else {
     const client = createMongoClient(dbHost, dbPort);
     await client.connect();

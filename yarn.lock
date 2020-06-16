@@ -6110,10 +6110,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vkontakte-api@^1.3.8:
-  version "1.3.8"
-  resolved "https://registry.yarnpkg.com/vkontakte-api/-/vkontakte-api-1.3.8.tgz#87ce0a94e388efa27a7a92d05b308220bf4350c3"
-  integrity sha512-MEpVZdUs27Nh3+RtkfGwFNNLkYDjN/3z8cWR1tJ5HXtsDXx0Yurs15iyLbx5fpXZWYCaUuoGJNCWzdf2YN1+rw==
+vkontakte-api@^1.3.9:
+  version "1.3.9"
+  resolved "https://registry.yarnpkg.com/vkontakte-api/-/vkontakte-api-1.3.9.tgz#a34271101d43e793d20668ce6f04f18f63048d31"
+  integrity sha512-EmZx9gaaoRR2Bdq+LbaVrfiEe9owrmNKEgRWr6W8MCzKHUtgS/lnX/ufxcjg0Hh4gU5LH5Kl2SASu60SsYhk1Q==
   dependencies:
     isomorphic-fetch "^2.2.1"
 
