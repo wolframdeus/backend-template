@@ -26,7 +26,7 @@ async function initDev(config: Config) {
     root,
     isDev: true,
     vkAPI: new VKAPI({
-      requestsPerSecond: vkApiRequestsPerSecond,
+      rps: vkApiRequestsPerSecond,
       accessToken: vkAppServiceKey,
     }),
     staticBaseUrl,
@@ -52,10 +52,7 @@ async function init(config: Config) {
     staticBaseUrl,
   } = config;
   const vkAPI = isMaster
-    ? new VKAPI({
-      requestsPerSecond: vkApiRequestsPerSecond,
-      accessToken: vkAppServiceKey,
-    })
+    ? new VKAPI({rps: vkApiRequestsPerSecond, accessToken: vkAppServiceKey})
     : new VKAPISlave();
 
   if (isMaster) {
@@ -75,7 +72,7 @@ async function init(config: Config) {
 
     // In master we do create VKAPI instance, because slaves should
     // communicate with single its instance, which is VKAPIMaster
-    new VKAPIMaster({threads: workers, client: vkAPI});
+    new VKAPIMaster({workers, instance: vkAPI});
   } else {
     const client = createMongoClient(dbHost, dbPort);
     await client.connect();
