@@ -1,5 +1,28 @@
 # backend
 
+Backend service template on stack:
+
+- Node + TypeScript
+- MongoDB
+- GraphQL based on Apollo
+- Express
+
+This template is mostly used to create new backend services on 
+[VK Mini Apps](https://vk.com/dev) platform, but it is rather easy to remove
+VK-context things and adapt template to your purposes. Some things that are
+VK-context based:
+- Sign validation
+- User search and registration 
+
+## Required environment packages
+
+Here is a list of packages which should be installed on running machine to
+run project:
+
+- NodeJS
+- Yarn
+- MongoDB
+
 ## Environment variables
 
 To deploy project it is required to create file `.env` and place these variables
