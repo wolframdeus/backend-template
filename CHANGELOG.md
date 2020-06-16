@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/wolframdeus/backend-template/compare/v1.5.0...v1.5.1) (2020-06-16)
+
+
+### Bug Fixes
+
+* **vkapimaster:** added master init ([bccbd9f](https://github.com/wolframdeus/backend-template/commit/bccbd9fe7069ac5313b17df0765f087f162af1a1))
+
 ## [1.5.0](https://github.com/wolframdeus/backend-template/compare/v1.4.1...v1.5.0) (2020-06-16)
 
 
