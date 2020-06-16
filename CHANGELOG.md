@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/wolframdeus/backend-template/compare/v1.3.7...v1.4.0) (2020-06-16)
+
+
+### Features
+
+* **withuser:** add withUser resolver which adds current user to context ([8e1f732](https://github.com/wolframdeus/backend-template/commit/8e1f732257fa802210af9a601af9e265a64dc114))
+
+
+### Bug Fixes
+
+* **register:** user search and check fix ([bcd2860](https://github.com/wolframdeus/backend-template/commit/bcd2860d4a0e7887083f1b0bfece4f03f568074e))
+* **vkapi:** vkapi bugfixes ([dc66073](https://github.com/wolframdeus/backend-template/commit/dc66073c34cf1e277c7289c987db7d8357e85327))
+
 ### [1.3.7](https://github.com/wolframdeus/backend-template/compare/v1.3.6...v1.3.7) (2020-06-08)
 
 
