@@ -1,5 +1,6 @@
-import {MongoClient} from 'mongodb';
+import {Collection, IndexOptions, MongoClient} from 'mongodb';
 import {Database} from './Database';
+import {CollectionEnum} from './types';
 
 /**
  * Creates mongo client
@@ -23,13 +24,43 @@ export function createDb(client: MongoClient, dbName: string): Database {
 }
 
 /**
+ * Creates index in case, it does not exist
+ * @param fieldOrSpec
+ * @param name
+ * @param {IndexOptions} options
+ * @param {Collection} collection
+ * @returns {Promise<void>}
+ */
+async function createIndex(
+  fieldOrSpec: string | any,
+  name: string,
+  options: IndexOptions,
+  collection: Collection,
+) {
+  const exists = await collection.indexExists(name);
+
+  if (!exists) {
+    await collection.createIndex(fieldOrSpec, {name, ...options});
+  }
+}
+
+/**
+ * Creates users collection
+ * @param {Database} db
+ * @returns {Promise<void>}
+ */
+async function createUsersCollection(db: Database) {
+  const collection = await db.createCollection(CollectionEnum.Users);
+  await createIndex('vkUserId', 'vkUserId', {unique: true}, collection);
+}
+
+/**
  * Creates required structure for database (collection, indexes, etc.)
  * @param {Database} db
  * @returns {Promise<void>}
  */
-// eslint-disable-next-line max-len
-// eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
 export async function prepareDb(db: Database) {
+  await createUsersCollection(db);
 }
 
 /**
