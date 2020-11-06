@@ -1,5 +1,8 @@
 # backend
 
+> *WARNING*
+> This template is deprecated. You should wait until new version is released.
+
 Backend service template on stack:
 
 - Node + TypeScript
